@@ -32,7 +32,7 @@ export function getAcessorys(){
     }
 }
 
-const intialState ={
+const initialState ={
     products:[],
     tops:[],
     bottoms:[],
