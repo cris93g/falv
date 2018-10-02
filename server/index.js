@@ -9,35 +9,27 @@ const ctrl = require("./productCtrl");
 const app = express();
 //stating port
 const port = process.env.port || 3001;
-
-
-app.use(cors())
-app.use(json())
-app.use(require("body-parser").text())
+const routes = require("./routes");
+routes(app);
+app.use(cors());
+app.use(json());
+app.use(require("body-parser").text());
 //made cookie
 app.use(
   session({
-    secret:process.env.SESSION_SECRET,
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-      maxAge:10000
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 10000
     }
   })
-)
+);
 //connected to db
-massive(process.env.CONNECTION_STRING).then(dbinstance =>{
-  app.set("db", dbinstance)
-})
-//test endpoint
-app.get("/api/test", (req, res, next) => {
-  res.sendStatus(200);
+massive(process.env.CONNECTION_STRING).then(dbinstance => {
+  app.set("db", dbinstance);
 });
-//endpoints
-app.get("/api/products", ctrl.getProducts);
-app.get("/api/tops", ctrl.getTops);
-app.get("/api/bottoms", ctrl.getBottoms);
-app.get("/api/acessorys", ctrl.getAcessorys);
+
 //checking on server
 app.listen(port, () => {
   console.log(`server running in port port ${port}`);
