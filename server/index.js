@@ -4,9 +4,10 @@ const { json } = require("body-parser");
 const session = require("express-session");
 const cors = require("cors");
 const massive = require("massive");
-const ctrl = require("./productCtrl");
+
 //server creation
 const app = express();
+
 //stating port
 const port = process.env.port || 3001;
 const routes = require("./routes");
@@ -14,6 +15,7 @@ routes(app);
 app.use(cors());
 app.use(json());
 app.use(require("body-parser").text());
+
 //made cookie
 app.use(
   session({

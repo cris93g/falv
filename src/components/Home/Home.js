@@ -4,9 +4,6 @@ import { Carousel } from "react-bootstrap";
 import "./Home.css";
 import Nav from "../Nav/Nav";
 const Wrapper = styled.section`
-  /* height:100vh;
-    width:100vw;
-    object-fit: cover; */
   display: flex;
 `;
 
